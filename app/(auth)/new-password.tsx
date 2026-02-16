@@ -9,8 +9,9 @@ import {
 	View,
 } from "react-native";
 
-export default function ForgotPassword() {
-	const [email, setEmail] = useState("");
+export default function NewPassword() {
+	const [password, setPassword] = useState("");
+	const [confirmPassword, setConfirmPassword] = useState("");
 	const [loading, setLoading] = useState(false);
 
 	const onSubmit = () => {
@@ -25,22 +26,35 @@ export default function ForgotPassword() {
 				keyboardShouldPersistTaps="handled"
 			>
 				<View className="bg-[#f0eee9] flex-1 pt-32 px-10">
-					<Text className="font-bold text-4xl">¿Olvidaste tu contraseña?</Text>
+					<Text className="font-bold text-4xl">Nueva contraseña</Text>
 
 					<Text className="font-semibold mt-6 text-2xl text-[#B3B3B3]">
-						No te preocupes, vamos a solucionarlo 😉
+						Vamos a crear una nueva contraseña fuerte y segura para tu cuenta 🤫
 					</Text>
 
-					{/* Email */}
+					{/* Contraseña */}
 					<View className="w-full">
-						<Text className="mt-8 mb-2 font-semibold">Email</Text>
+						<Text className="mt-8 mb-2 font-semibold">Contraseña</Text>
 						<TextInput
-							value={email}
-							onChangeText={setEmail}
-							autoCapitalize="none"
-							keyboardType="email-address"
-							placeholder="john.doe@example.com"
-							className="border border-gray-300 bg-transparent rounded-[10px] px-4 py-4 focus:border-[#2853aa] focus:bg-white"
+							value={password}
+							onChangeText={setPassword}
+							secureTextEntry
+							placeholder="*********"
+							className="border border-gray-300	bg-transparent rounded-[10px] px-4 py-4 focus:border-[#2853aa] focus:bg-white"
+						/>
+					</View>
+
+					{/* Confirmar contraseña */}
+					<View className="w-full">
+						<Text className="mt-8 mb-2 font-semibold">
+							Confirmar contraseña
+						</Text>
+						<TextInput
+							value={password}
+							onChangeText={setPassword}
+							secureTextEntry
+							placeholder="*********"
+							className="border border-gray-300	bg-transparent rounded-[10px] px-4 py-4 focus:border-[#2853aa] focus:bg-white"
 						/>
 					</View>
 
@@ -56,7 +70,7 @@ export default function ForgotPassword() {
 							accessibilityRole="button"
 						>
 							<Text className="font-semibold text-center text-white uppercase">
-								{loading ? "Entrando..." : "Reiniciar contraseña"}
+								{loading ? "Entrando..." : "Cambiar contraseña"}
 							</Text>
 						</Pressable>
 					</View>
@@ -65,12 +79,12 @@ export default function ForgotPassword() {
 					<View className="w-full mt-8">
 						<View className="flex-row items-center justify-center gap-2">
 							<Pressable
-								onPress={() => router.push("/(auth)/new-password")}
+								onPress={() => router.push("/(auth)/reset-password-send")}
 								disabled={loading}
 								accessibilityRole="button"
 							>
 								<Text className="font-bold text-[#2853aa]">
-									Cambiar contraseña
+									reset password send
 								</Text>
 							</Pressable>
 						</View>

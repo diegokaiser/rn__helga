@@ -1,15 +1,8 @@
+import { router } from "expo-router";
 import { useState } from "react";
-import {
-	Keyboard,
-	Pressable,
-	ScrollView,
-	Text,
-	TextInput,
-	View,
-} from "react-native";
+import { Keyboard, Pressable, ScrollView, Text, View } from "react-native";
 
-export default function VerifyEmail() {
-	const [code, setCode] = useState("");
+export default function ResetPasswordSend() {
 	const [loading, setLoading] = useState(false);
 
 	const onSubmit = () => {
@@ -25,27 +18,13 @@ export default function VerifyEmail() {
 			>
 				<View className="bg-[#f0eee9] flex-1 pt-32 px-10">
 					<Text className="font-bold text-4xl">
-						Verificación de correo electronico
+						Solicitud para cambio de contraseña enviado
 					</Text>
 
 					<Text className="font-semibold mt-6 text-2xl text-[#B3B3B3]">
-						Un código de verificación ha sido enviado 🔢
+						Hemos enviado las instrucciones detalladas a tu correo electrónico
+						✉️
 					</Text>
-
-					{/* Teléfono */}
-					<View className="w-full">
-						<Text className="mt-8 mb-2 font-semibold">
-							Código de verificación
-						</Text>
-						<TextInput
-							value={code}
-							onChangeText={setCode}
-							autoCapitalize="none"
-							keyboardType="numeric"
-							placeholder="1234"
-							className="border border-gray-300 bg-transparent rounded-[10px] px-4 py-4 focus:border-[#2853aa] focus:bg-white"
-						/>
-					</View>
 
 					{/* Botón de continuar */}
 					<View className="w-full mt-8">
@@ -54,14 +33,29 @@ export default function VerifyEmail() {
 							disabled={loading}
 							className={[
 								"box-border border-[2px] border-[#2853aa] px-6 py-4 rounded-[10px]",
-								loading ? "bg-[#2853aa]/70" : "bg-[#2853aa]",
+								loading ? "bg-[#f0eee9]/70" : "bg-[#f0eee9]",
 							].join(" ")}
 							accessibilityRole="button"
 						>
-							<Text className="font-semibold text-center text-white uppercase">
-								{loading ? "Entrando..." : "Verificar"}
+							<Text className="font-semibold text-center text-[#2853aa] uppercase">
+								{loading ? "Entrando..." : "Identificarte"}
 							</Text>
 						</Pressable>
+					</View>
+
+					{/* Temporal, eliminar luego */}
+					<View className="w-full mt-8">
+						<View className="flex-row items-center justify-center gap-2">
+							<Pressable
+								onPress={() => router.push("/(auth)/verify-email")}
+								disabled={loading}
+								accessibilityRole="button"
+							>
+								<Text className="font-bold text-[#2853aa]">
+									OTP Verification
+								</Text>
+							</Pressable>
+						</View>
 					</View>
 				</View>
 			</ScrollView>
