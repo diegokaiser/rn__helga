@@ -27,7 +27,7 @@ export default function Login() {
 		try {
 			setLoading(true);
 			await loginWithEmail(email.trim(), password);
-			router.push("/(tabs)/home");
+			router.replace("/(tabs)/home");
 		} catch (error: any) {
 			Alert.alert("Error", error?.message ?? "Invalid email or password");
 		} finally {
